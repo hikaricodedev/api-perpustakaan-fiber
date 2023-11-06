@@ -5,8 +5,10 @@ import (
 
 	"api_perpustakaan/configs"
 	"api_perpustakaan/models"
+	"api_perpustakaan/routes"
 
 	"github.com/gofiber/fiber/v2"
+
 	goenv "github.com/subosito/gotenv"
 )
 
@@ -28,10 +30,7 @@ func main() {
 		migrate()
 	}
 	app := fiber.New()
-	//refference
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
-	//refference
+
+	routes.SetupRoutes(app)
 	app.Listen(":3000")
 }
