@@ -32,5 +32,5 @@ func main() {
 	app := fiber.New()
 
 	routes.SetupRoutes(app)
-	app.Listen(":3000")
+	app.Listen(":" + os.Getenv("RUNNING_PORT"))
 }

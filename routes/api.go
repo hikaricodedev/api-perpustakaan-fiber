@@ -10,4 +10,5 @@ func SetupRoutes(app *fiber.App) {
 	api := app.Group("/api")
 
 	api.Get("/books", controllers.SearchBooks)
+	api.Post("/books/store", controllers.CreateBook)
 }

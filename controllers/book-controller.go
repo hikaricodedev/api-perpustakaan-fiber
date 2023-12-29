@@ -31,3 +31,14 @@ func SearchBooks(c *fiber.Ctx) error {
 
 	return c.JSON(books)
 }
+
+func CreateBook(c *fiber.Ctx) error {
+	var book models.Book
+	db := configs.ConnectDB() // Mengambil instance GORM dari local storage di Fiber
+	if err := c.BodyParser(&book); err != nil {
+		return err
+	}
+	db.Create(&book)
+
+	return c.JSON(book)
+}
