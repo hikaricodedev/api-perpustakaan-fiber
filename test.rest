@@ -1,0 +1,39 @@
+GET http://localhost:3030/api/books/ab
+
+###
+
+POST http://localhost:3030/api/books/store
+Content-Type: application/json
+
+{
+  "book_code": "ba02",
+  "book_title": "judul",
+  "book_author": "pengarang",
+  "book_publisher": "penerbit2",
+  "category": 0,
+  "book_publish_date": "2020-01-02",
+  "book_language": "en",
+  "created_at": "0001-01-01T00:00:00Z",
+  "updated_at": "0001-01-01T00:00:00Z"
+}
+
+###
+
+PUT http://localhost:3030/api/books/ba01/update
+Content-Type: application/json
+
+{
+  "book_title": "judul",
+  "book_author": "pengarangnew",
+  "book_publisher": "penerbit2",
+  "category": 0,
+  "book_publish_date": "2020-01-02",
+  "book_language": "en",
+  "created_at": "0001-01-01T00:00:00Z",
+  "updated_at": "0001-01-01T00:00:00Z"
+}
+
+###
+
+DELETE http://localhost:3030/api/books/ba01
+Content-Type: application/json
