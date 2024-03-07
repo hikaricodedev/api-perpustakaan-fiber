@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"api_perpustakaan/configs"
@@ -22,6 +23,15 @@ func migrate() {
 	db.AutoMigrate(&models.Return{})
 	db.AutoMigrate(&models.ReturnItem{})
 	db.AutoMigrate(&models.Category{})
+
+	sqlStr := `SELECT b.brw_code AS brw_code, m.mem_name AS mem_name , b.brw_date AS brw_date , b.brw_status AS brw_status, b.created_at AS created_at , b.updated_at AS updated_at FROM borrows b LEFT JOIN members m ON b.mem_id = m.mem_id`
+	args := '-'
+
+	tx := db.Exec(sqlStr, args)
+
+	if tx.Error != nil {
+		fmt.Println("error migrate")
+	}
 }
 
 func main() {
