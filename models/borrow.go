@@ -1,13 +1,16 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 type Borrow struct {
-	BrwCode   string `gorm:"primaryKey"`
-	MemId     int    `gorm:"not null"`
-	BrwDate   string `gorm:"not null"`
-	BrwTime   int    `gorm:"not null"`
-	BrwStatus int    `gorm:"not null"`
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	BrwCode     string `gorm:"primaryKey" json:"brw_code"`
+	MemId       int    `gorm:"not null" json:"mem_id"`
+	BrwDate     string `gorm:"not null" json:"brw_date"`
+	BrwTime     int    `gorm:"not null" json:"brw_time"`
+	BrwStatus   int    `gorm:"not null" json:"brw_status"`
+	CreatedAt   time.Time
+	UpdatedAt   time.Time
+	BorrowItems []BorrowItem `gorm:"foreignKey:BrwCode" json:"brw_items" binding:"-"`
 }

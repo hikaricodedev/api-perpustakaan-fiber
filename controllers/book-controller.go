@@ -35,15 +35,15 @@ func SearchBooks(c *fiber.Ctx) error {
 func GetSingleBook(c *fiber.Ctx) error {
 	// userID := c.Params("id") sample get params
 	// return c.SendString("User ID: " + userID)
-	book_code := c.Params("id")
+	book_code := c.Params("code")
 
 	var books models.Book
 
 	db := configs.ConnectDB() // Mengambil instance GORM dari local storage di Fiber
 
 	query := db
-
-	query.Find(&books, book_code)
+	query = query.Where("book_code", book_code)
+	query.First(&books)
 
 	return c.JSON(books)
 }

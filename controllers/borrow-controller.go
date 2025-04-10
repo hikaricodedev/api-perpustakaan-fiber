@@ -8,34 +8,30 @@ import (
 )
 
 func SearchBorrow(c *fiber.Ctx) error {
-	title := c.Query("title")
-	author := c.Query("author")
-	pub_date := c.Query("pub_date")
+	code := c.Query("code")
+	brw_date := c.Query("brw_date")
 
-	var books []models.Borrow
+	var borrow []models.Borrow
 
 	db := configs.ConnectDB() // Mengambil instance GORM dari local storage di Fiber
 
 	query := db
-	if title != "" {
-		query = query.Where("book_title LIKE ?", "%"+title+"%")
+	if code != "" {
+		query = query.Where("brw_code LIKE ?", "%"+code+"%")
 	}
-	if author != "" {
-		query = query.Where("book_author LIKE ?", "%"+author+"%")
-	}
-	if pub_date != "" {
-		query = query.Where("book_pub_date = ?", pub_date)
+	if brw_date != "" {
+		query = query.Where("brw_date LIKE ?", "%"+brw_date+"%")
 	}
 
-	query.Find(&books)
+	query.Find(&borrow)
 
-	return c.JSON(books)
+	return c.JSON(borrow)
 }
 
 func GetSingleBorrow(c *fiber.Ctx) error {
 	// userID := c.Params("id") sample get params
 	// return c.SendString("User ID: " + userID)
-	book_code := c.Params("id")
+	book_code := c.Params("code")
 
 	var books models.Borrow
 
@@ -49,14 +45,14 @@ func GetSingleBorrow(c *fiber.Ctx) error {
 }
 
 func CreateBorrow(c *fiber.Ctx) error {
-	var book models.Borrow
+	var borrow models.Borrow
 	db := configs.ConnectDB() // Mengambil instance GORM dari local storage di Fiber
-	if err := c.BodyParser(&book); err != nil {
+	if err := c.BodyParser(&borrow); err != nil {
 		return err
 	}
-	db.Create(&book)
+	db.Create(&borrow)
 
-	return c.JSON(book)
+	return c.JSON(borrow)
 }
 
 func UpdateBorrow(c *fiber.Ctx) error {
