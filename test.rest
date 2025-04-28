@@ -53,3 +53,47 @@ Content-Type: application/json
   "created_at": "0001-01-01T00:00:00Z",
   "updated_at": "0001-01-01T00:00:00Z"
 }
+
+###
+
+POST http://localhost:3030/api/member/store
+Content-Type: application/json
+
+{
+  "mem_name": "Rin",
+  "mem_email": "rin@mail.com",
+  "mem_phone": 224452242,
+  "mem_bd": "2000-01-01",
+  "mem_gend": "L",
+  "mem_addr": "Bandung",
+  "mem_status": 1,
+  "created_at": "0001-01-01T00:00:00Z",
+  "updated_at": "0001-01-01T00:00:00Z"
+}
+
+###
+POST http://localhost:3030/api/borrow/store
+Content-Type: application/json
+
+{
+  "mem_id": 1,
+  "brw_date": "2000-01-01",
+  "brw_time": 4,
+  "brw_status": 1,
+  "brw_items" : [
+    {
+      "book_code" : "ba01",
+      "brwi_status" : 1,
+      "created_at": "0001-01-01T00:00:00Z",
+      "updated_at": "0001-01-01T00:00:00Z"
+    }
+  ],
+  "created_at": "0001-01-01T00:00:00Z",
+  "updated_at": "0001-01-01T00:00:00Z"
+}
+
+###
+
+PUT http://localhost:3030/api/borrow/BR.250428.0007/return
+Content-Type: application/json
+

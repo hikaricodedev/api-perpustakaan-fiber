@@ -29,5 +29,6 @@ func SetupRoutes(app *fiber.App) {
 	api.Get("/borrow/:code", controllers.GetSingleBorrow)
 	api.Post("/borrow/store", controllers.CreateBorrow)
 	api.Put("/borrow/:code/update", controllers.UpdateBorrow)
+	api.Put("/borrow/:code/return", controllers.ReturnBook)
 	api.Delete("/borrow/:code", middleware.Protected, controllers.DeleteBorrow)
 }
